@@ -6,8 +6,6 @@ This is a implementation of Conways game of life from 1970 (https://en.wikipedia
 The project was developed in relation to a online coding challenge by it-talents.de in May 2018.
 
 # Demo
-You can see the web application on https://kridreyem.github.io/GameOfLife/
-
 ![](images/gameOfLife_demo.gif)
 
 # Rules
