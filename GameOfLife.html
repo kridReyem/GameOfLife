@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Game of Life - Dirk Meyer</title>
+        <meta name="description" content="The Game of Life - Dirk Meyer">
+        <meta name="Dirk Meyer" content="SitePoint">
+        <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        
+        <!-- main content  -->
+        <div class="container">
+            
+            
+            <!-- First Row (Heading, Help-Button)-->
+            <div class="row" id="fstRow">
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4 text-center">
+                    <h1 class="heading" style="font-size: 50px;">Game of Life</h1>
+                    <h6 class="heading">By Dirk Meyer</h6>
+                </div>
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-1">
+                    <button id="helpButton" type="button" class="btn btn-my center" data-toggle="modal" data-target="#helpModal">
+                    <span class="far fa-question-circle fa-2x"></span>
+                    </button>
+                </div>
+            </div>
+            
+            
+            <!-- Second Row (Canvas to simulate and draw the game) -->
+            <div class="row" id="sndRow">
+                <div class="col-lg-12">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+            
+            
+            <!-- Third Row (headings for slider, buttons and counter) -->
+            <div class="row" id="thrdRow">
+                <div class="col-lg-4">
+                    <h7 id="paceSliderValLabel">Geschwindigkeit: 1</h7>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <p id="generationCounter">Generation: 0</p>
+                </div>
+                <div clasS="col-lg-4 text-center">
+                    <p id="livingCounter">Lebende Zellen: 0 | 0%</p>
+                </div>
+            </div>
+            
+            
+            <!-- Fourth Row  (Pace-Slider, Buttons (Start, Pause, Forward, Restart), Counter (generation, living cells))-->
+            <div class="row" id="frthRow">
+                
+                <!-- pace -->
+                <div class="col-lg-4">
+                    <input id="paceSlider" type="text" data-slider-min="0.5" data-slider-id="paceS" data-slider-max="5" data-slider-step="0.5" data-slider-value="1" data-slider-tooltip="show" /> 
+                </div>
+                
+                <!-- Player Buttons -->
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-success" id="startButton" data-toggle="tooltip" data-placement="bottom" title="Start"><span class="fas fa-play"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="pauseButton" data-toggle="tooltip" data-placement="bottom" title="Pause"><span class="fas fa-pause"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning" id="resumeButton" data-toggle="tooltip" data-placement="bottom" title="Fortfahren"><span class="fas fa-forward"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger" id="restartButton" data-toggle="tooltip" data-placement="bottom" title="Neustart"><span class="fas fa-undo-alt"></span>
+                    </button>
+                </div>
+                
+                <!-- counter-->
+                <div class="col-lg-4 text-center">
+                    <p id="sumCells">Zellen: 0</p>
+                </div>
+            </div>
+           
+            <!-- extra div class to hide containing elements by function -->
+            <div class="hideSettings">
+        
+                 <!-- Fifth Row (headings for spinner and slider) -->
+                <div class="row" id="sliderHeaders">
+                    <div class="col-lg-2">
+                        <h7>Zeilen</h7>
+                    </div>
+                    <div class="col-lg-2">
+                        <h7>Spalten</h7>
+                    </div>
+                    <div class="col-lg-4">
+                        <h7 id="probSliderValLabel">Wahrscheinlichkeit: 75%</h7>
+                    </div>
+                    <div class="col-lg-4">
+                        <h7 id="radiusSliderValLabel">Radius: 20%</h7>
+                    </div>
+                </div>
+                
+                <!-- Six Row  (contains size spinner, slider (probability) and slider (radius)) -->
+                <div class="row" id="fthRow">
+                    
+                    <!-- size (x-value) -->
+                    <div class="col-lg-2">
+                        <div class="center" id="lock"><i class="fas fa-lock fa-4x"></i></div>
+                        <div class="input-group number-spinner" id="xValueSpinner"> <span class="input-group-btn data-dwn">
+                            <button class="btn btn-default btn-info" data-dir="dwn" data-toggle="tooltip" data-placement="bottom" title="X-Wert verringern"><span class="fas fa-angle-down" ></span>
+                            </button>
+                            </span>
+                            <input type="text" class="form-control text-center" value="100" min="10" max="100" id="selectedX"> <span class="input-group-btn data-up">
+                            <button class="btn btn-default btn-info" data-dir="up" data-toggle="tooltip" data-placement="bottom" title="X-Wert erhöhen"><span class="fas fa-angle-up"></span>
+                            </button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- size (y-value) -->
+                    <div class="col-lg-2">
+                        <div class="center" id="lock"><i class="fas fa-lock fa-4x"></i></div>
+                        <div class="input-group number-spinner" id="yValueSpinner"> <span class="input-group-btn data-dwn">
+                            <button class="btn btn-default btn-info" data-dir="dwn" data-toggle="tooltip" data-placement="bottom" title="Y-Wert verringern"><span class="fas fa-angle-down"></span>
+                            </button>
+                            </span>
+                            <input type="text" class="form-control text-center" value="50" min="10" max="100" id="selectedY"> <span class="input-group-btn data-up">
+                            <button class="btn btn-default btn-info" data-dir="up" data-toggle="tooltip" data-placement="bottom" title="Y-Wert erhöhen"><span class="fas fa-angle-up"></span>
+                            </button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- probability -->
+                    <div class="col-lg-4">
+                        <div class="center" id="lock"><i class="fas fa-lock fa-4x"></i></div>
+                        <input id="probSlider" type="text" data-slider-min="0" data-slider-id="probS" data-slider-max="100" data-slider-step="1" data-slider-value="75" data-slider-tooltip="show" /> 
+                    </div>
+                    
+                    <!-- radius -->
+                    <div class="col-lg-4">
+                        <div class="center" id="lock"><i class="fas fa-lock fa-4x"></i></div>
+                        <input id="radiusSlider" type="text" data-slider-min="5" data-slider-id="radiusS" data-slider-max="100" data-slider-step="5" data-slider-value="20" data-slider-tooltip="show" /> 
+                    </div>
+                </div>
+            </div>
+            
+            
+             <!-- Seventh Row (contains both rule-sets of buttons, living and reliving rules) -->
+            <div class="row" id="sixRow">
+                <div class="col-lg-1"></div>
+                
+                <!-- living rule Buttons -->
+                <div class="col-lg-5">
+                    <div class="center">
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living1">
+                        <i class="deactivated" id="lCheck1">1</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living2">
+                        <i class="deactivated" id="lCheck2">2</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living3">
+                        <i class="deactivated" id="lCheck3">3</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living4">
+                        <i class="deactivated" id="lCheck4">4</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living5">
+                        <i class="deactivated" id="lCheck5">5</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living6">
+                        <i class="deactivated" id="lCheck6">6</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living7">
+                        <i class="deactivated" id="lCheck7">7</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxL" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="living8">
+                        <i class="deactivated" id="lCheck8">8</i>
+                        </span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- reliving rule Buttons -->
+                <div class="col-lg-5">
+                    <div class="center">
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying1">
+                        <i class="deactivated" id="dCheck1">1</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying2">
+                        <i class="deactivated" id="dCheck2">2</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying3">
+                        <i class="deactivated" id="dCheck3">3</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying4">
+                        <i class="deactivated" id="dCheck4">4</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying5">
+                        <i class="deactivated" id="dCheck5">5</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying6">
+                        <i class="deactivated" id="dCheck6">6</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying7">
+                        <i class="deactivated" id="dCheck7">7</i>
+                        </span>
+                        </span>
+                        </label>
+                        <label class="label">
+                        <input class="label__checkboxD" type="checkbox" /> <span class="label__text">
+                        <span class="label__check" id="dying8">
+                        <i class="deactivated" id="dCheck8">8</i>
+                        </span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            
+            
+            <!-- Eight Row -->
+            <div class="row" id="eightRow">
+                <div class="col-lg-12">
+                    <h1 class="rules">Grundregeln</h1>
+                    <ul>
+                        <p style="padding-bottom: 2%; padding-top: 1%">Die folgenden Spielregeln sind die voreingestellten Spielregeln. Diese können mit Hilfe der verschiedenen Einstellungen in dieser WebApp jedoch angepasst werden. <a href="#featureJumper">Mehr...</a></p>
+                        <p style="padding-bottom: 1%; padding-top: 1%">Die nächste Generation an lebenden Zellen (also der Status aller Zellen in der nächsten Spielrunde) wird durch ein einfaches Regelset berechnet:</p>
+                        <li><i class="fas fa-angle-right"></i> Jede lebende Zelle, die weniger als 2 lebende Nachbarzellen hat, stirbt</li>
+                        <li><i class="fas fa-angle-right"></i> Jede lebende Zelle, die 2 oder 3 lebendige Nachbarzellen hat, lebt weiter</li>
+                        <li><i class="fas fa-angle-right"></i> Jede lebende Zelle, die mehr als 3 lebende Nachbarzellen hat, stirbt</li>
+                        <li><i class="fas fa-angle-right"></i> Jede tote Zelle, die genau 3 lebende Nachbarzellen hat, wird lebendig</li>
+                    </ul>
+                </div>
+            </div>
+            
+             <!-- Ninth Row  (list of features of the web app) -->
+            <div class="row" id="nthRow">
+                <div class="col-lg-12">
+                    <h1 class="rules" id="featureJumper">Features</h1>
+                    <ul class="features">
+                        <p style="padding-bottom: 1%; padding-top: 1%">  Im Folgenden werden die zentralen Features dieser Web-App erklärt</p>
+                        <li><i class="fas fa-qrcode"></i>  Simulation des <a href="https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens">Game of Life</a> von John Horton Conway aus dem Jahr 1970 </li>
+                        <li><i class="fas fa-filter"></i>  Spielregeln verändern (Weiterleben und Wiederbelebung)</li>
+                        <li><i class="fas fa-pencil-alt"></i> Manuell auf dem Spielfeld zeichnen - sowohl bei der Startbelegung als auch während der Simulation</li>
+                        <li><i class="fas fa-calculator"></i> Anzahl lebender Zellen bei der Startbelegung prozentual angeben</li>
+                        <li><i class="fas fa-fighter-jet"></i>  Anpassen der Simulationsgeschwindigkeit </li>
+                        <li><i class="fas fa-arrows-alt-h"></i>  Verändern der Fläche die bei der Startbelegung lebende Zellen enthalten soll </li>
+                        <p style="padding-bottom: 1%; padding-top: 2%">Sie benötigen weitere Hilfe? Dann klicken Sie hier - <a href="#" data-toggle="modal" data-target="#helpModal"> Hilfe</a></p>
+                    </ul>
+                </div>
+            </div>
+            
+             <!-- Last Rows (Footer) -->
+            <div class="section" id="footer">
+                <div class="row" id="footerHead">
+                    <div class="col-lg-12 text-center">
+                        <img src=".\images\ittalentsLogo.png" alt="IT-Talents" ahref="https://www.it-talents.de/" style="height: 50px; width: auto;">
+                    </div>
+                </div>
+                <div class="row" id="footerMedia">
+                    <div class="col-lg-12 text-center" style="padding-top: 2%;">
+                        <a href='https://plus.google.com/102939274363947926860'><i class="fab fa-google-plus-square fa-2x"></i></a>
+                        <a href='https://www.facebook.com/ittalents.de'><i class="fab fa-facebook-square fa-2x"></i></a>
+                        <a href='https://www.it-talents.de/blog/rss'><i class="fas fa-rss-square fa-2x"></i></a>
+                        <a href='https://twitter.com/IT_Talents_de'><i class="fab fa-twitter-square fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document" style="font-size: 14px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="helpModalLabel">Hilfe und Erklärungen</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" id="helpRows">
+                                <div class="col-lg-6 text-center"><img src=".\images\pace.png" style="height: 50%; width: auto;"></div>
+                                <div class="col-lg-6">Mit dieser Einstellungen können Sie die Animationsgeschwindigkeit im Wertebereich von 0.5 (halbe Geschwindigkeit) bis zu 5 (5-fache Geschwindigkeit) steuern. 
+                                    Diese Einstellung kann auch während der Simulation verändert werden.
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" id="helpRows">
+                                <div class="col-lg-6 text-center"><img src=".\images\prob.png" style="height: 50%; width: auto;"></div>
+                                <div class="col-lg-6">Mit der Einstellung für die Wahrscheinlichkeit kann angegeben werden wie viele tote Zellen bei der Initialisierung vorkommen. Hierbei stehen 100% für nur tote Zellen und 0% für ausschließlich lebende Zellen. Diese Einstellung kann nach dem Simulationsstart nicht mehr verändert werden.</div>
+                            </div>
+                            <hr>
+                            <div class="row" id="helpRows">
+                                <div class="col-lg-6 text-center"><img src=".\images\radius.png"  style="height: 50%; width: auto;"></div>
+                                <div class="col-lg-6">Mit der Radius-Einstellung kann ein Wert zwischen 5% und 100% angegeben werden, in welchem bei der Initialbelegung überhaupt lebende Zellen vorkommen können.
+                                    Diese Einstellung kann nach dem Simulationsstart nicht mehr verändert werden.
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" id="helpRows">
+                                <div class="col-lg-6 text-center"><img src=".\images\size.png"  style="height: 50%; width: auto;"></div>
+                                <div class="col-lg-6">Die beiden Werte X und Y ermöglichen die Anpassung des Spielfeldes. Diese Einstellung kann nach dem Simulationsstart nicht mehr verändert werden.</div>
+                            </div>
+                            <hr>
+                            <div class="row" id="helpRows">
+                                <div class="col-lg-6 text-center"><img src=".\images\stay.png"  style="height: 50%; width: auto;"></div>
+                                <div class="col-lg-6">Das Auswahlfenster mit den grünen Feldern, spiegeln die Regeln für das Weiterleben einer Zelle im nächsten Zyklus wieder. Voreingestellt sind die Standardregeln mit 2 und 3.
+                                    Diese Einstellung kann auch während der Simulation verändert werden.
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" id="helpRows">
+                                <div class="col-lg-6 text-center"><img src=".\images\relive.png"  style="height: 50%; width: auto;"></div>
+                                <div class="col-lg-6">Das in blau gehaltene Auswahlfenster, spiegelt die Regeln für das Wiederbeleben einer Zelle im nächsten Zyklus wieder. Voreingestellt ist hier die Standardregel 3. Diese Einstellung kann auch während der Simulation verändert werden.</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Alles klar!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
