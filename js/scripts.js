@@ -39,7 +39,7 @@ var generation = 0;
 var livingCells = 0;
 var percentageLivingCells = 0;
 var sumCells = selectedX * selectedY;
-$("#sumCells").text("Zellen: " + sumCells);
+$("#sumCells").text("Cells: " + sumCells);
 
 //to handle user input clicking pause-button
 var pausePitch = actPG;
@@ -69,7 +69,7 @@ $(document).ready(function() {
 //click-event listener for pace-sllider
 $("#paceSlider").slider();
 $("#paceSlider").on("slide", function(slideEvt) {
-    $("#paceSliderValLabel").text("Simulation speedt: " + slideEvt.value);
+    $("#paceSliderValLabel").text("Simulation speed: " + slideEvt.value);
     pace = $("#paceSlider").val();
 });
 
@@ -351,7 +351,7 @@ $(".number-spinner button").mousedown(function() {
     canvas.setAttribute('height', $("#selectedY").val() * 10);
     draw(initPG(newY, newX));
     sumCells = newX * newY;
-    $("#sumCells").text("Zellen: " + sumCells);
+    $("#sumCells").text("Cells: " + sumCells);
     clearInterval(action);
 
 });
