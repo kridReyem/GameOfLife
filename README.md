@@ -1,5 +1,5 @@
 # GameOfLife
-JavaScript Implementation of the Game Of Life (Conway's Game of Life). Language settings on the actual website are in german, because the coding challenge has been provided in german.
+JavaScript Implementation of the Game Of Life (Conway's Game of Life). 
 
 # General Information
 This is a implementation of Conways game of life from 1970 (https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). 
