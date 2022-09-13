@@ -17,9 +17,8 @@ The next generation of living cells (i.e. the status of all cells in the next ga
 # Features
 In the following all features of this web app are explained
 
-- Simulation of the Game of Life by John Horton Conway from 1970
-- Change the rules of the game (continue living and resuscitate)
-- Draw manually on the board - both at start occupancy and during simulation
+- change the rules of the game (continue living and resuscitate)
+- draw manually on the board (mouse drag/click) - both at start occupancy and during simulation
 - Specify number of living cells as a percentage during start occupancy
 - Adjusting the simulation speed
 - Change the area that should contain living cells at start occupancy
