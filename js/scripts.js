@@ -69,14 +69,14 @@ $(document).ready(function() {
 //click-event listener for pace-sllider
 $("#paceSlider").slider();
 $("#paceSlider").on("slide", function(slideEvt) {
-    $("#paceSliderValLabel").text("Geschwindigkeit: " + slideEvt.value);
+    $("#paceSliderValLabel").text("Simulation speedt: " + slideEvt.value);
     pace = $("#paceSlider").val();
 });
 
 //click-event listener for probability-sllider
 $("#probSlider").slider();
 $("#probSlider").on("slide", function(slideEvt) {
-    $("#probSliderValLabel").text("Wahrscheinlichkeit: " + slideEvt.value + " %");
+    $("#probSliderValLabel").text("Probability " + slideEvt.value + " %");
     userProb = $("#probSlider").val();
     actPG = initPG($("#selectedY").val(), $("#selectedX").val());
     draw(actPG);
@@ -204,10 +204,10 @@ function handleMouseMove(u) {
         var helperMMV = Array.from(new Set(mouseMoveValues.map(JSON.stringify)), JSON.parse);;
         helperMMV.push([drawY, drawX]);
         helperMMV = Array.from(new Set(helperMMV.map(JSON.stringify)), JSON.parse);
-        console.log("Helper: " + helperMMV);
-        console.log("MMV: " + mouseMoveValues);
-        console.log("Länge Helper: " + helperMMV.length);
-        console.log("Länge MMV: " + mouseMoveValues.length);
+        //console.log("Helper: " + helperMMV);
+        //console.log("MMV: " + mouseMoveValues);
+        //console.log("Length Helper: " + helperMMV.length);
+        //console.log("Length MMV: " + mouseMoveValues.length);
         //compare if the user targets  new cells and change if true the cell-status
         if (helperMMV.length !== mouseMoveValues.length) {
             mouseMoveValues = helperMMV;
@@ -305,8 +305,8 @@ $('#restartButton').on('click', function(event) {
     actPG = initPG(newY, newX);
     draw(actPG);
     $("#generationCounter").text("Generation: " + generation);
-    $("#livingCounter").text("Lebende Zellen: " + livingCells + " | " + (livingCells / (sumCells / 100)).toFixed(2) + " %");
-    $("#sumCells").text("Zellen: " + sumCells);
+    $("#livingCounter").text("Living Cells: " + livingCells + " | " + (livingCells / (sumCells / 100)).toFixed(2) + " %");
+    $("#sumCells").text("Cells: " + sumCells);
 });
 
 
@@ -698,7 +698,7 @@ function pitchCalc(pitch) {
             generation += 1;
             draw(cyclePG);
             $("#generationCounter").text("Generation: " + generation);
-            $("#livingCounter").text("Lebende Zellen: " + livingCells + " | " + (livingCells / (sumCells / 100)).toFixed(2) + " %");
+            $("#livingCounter").text("Living Cells: " + livingCells + " | " + (livingCells / (sumCells / 100)).toFixed(2) + " %");
             pausePitch = cyclePG;
             pitchCalc(cyclePG);
 
