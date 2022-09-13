@@ -49,13 +49,13 @@
             <!-- Third Row (headings for slider, buttons and counter) -->
             <div class="row" id="thrdRow">
                 <div class="col-lg-4">
-                    <h7 id="paceSliderValLabel">Geschwindigkeit: 1</h7>
+                    <h7 id="paceSliderValLabel">Simulation-Pace: 1</h7>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <p id="generationCounter">Generation: 0</p>
+                    <p id="generationCounter">Generations: 0</p>
                 </div>
                 <div clasS="col-lg-4 text-center">
-                    <p id="livingCounter">Lebende Zellen: 0 | 0%</p>
+                    <p id="livingCounter">Living Cells: 0 | 0%</p>
                 </div>
             </div>
             
@@ -92,13 +92,13 @@
                  <!-- Fifth Row (headings for spinner and slider) -->
                 <div class="row" id="sliderHeaders">
                     <div class="col-lg-2">
-                        <h7>Zeilen</h7>
+                        <h7>Cells</h7>
                     </div>
                     <div class="col-lg-2">
-                        <h7>Spalten</h7>
+                        <h7>Columns</h7>
                     </div>
                     <div class="col-lg-4">
-                        <h7 id="probSliderValLabel">Wahrscheinlichkeit: 75%</h7>
+                        <h7 id="probSliderValLabel">Probability: 75%</h7>
                     </div>
                     <div class="col-lg-4">
                         <h7 id="radiusSliderValLabel">Radius: 20%</h7>
@@ -287,12 +287,12 @@
                 <div class="col-lg-12">
                     <h1 class="rules">Grundregeln</h1>
                     <ul>
-                        <p style="padding-bottom: 2%; padding-top: 1%">Die folgenden Spielregeln sind die voreingestellten Spielregeln. Diese können mit Hilfe der verschiedenen Einstellungen in dieser WebApp jedoch angepasst werden. <a href="#featureJumper">Mehr...</a></p>
-                        <p style="padding-bottom: 1%; padding-top: 1%">Die nächste Generation an lebenden Zellen (also der Status aller Zellen in der nächsten Spielrunde) wird durch ein einfaches Regelset berechnet:</p>
-                        <li><i class="fas fa-angle-right"></i> Jede lebende Zelle, die weniger als 2 lebende Nachbarzellen hat, stirbt</li>
-                        <li><i class="fas fa-angle-right"></i> Jede lebende Zelle, die 2 oder 3 lebendige Nachbarzellen hat, lebt weiter</li>
-                        <li><i class="fas fa-angle-right"></i> Jede lebende Zelle, die mehr als 3 lebende Nachbarzellen hat, stirbt</li>
-                        <li><i class="fas fa-angle-right"></i> Jede tote Zelle, die genau 3 lebende Nachbarzellen hat, wird lebendig</li>
+                        <p style="padding-bottom: 2%; padding-top: 1%">The following game rules are the preset game rules. However, these can be customized using the various settings in this WebApp. <a href="#featureJumper">Mehr...</a></p>
+                        <p style="padding-bottom: 1%; padding-top: 1%">The next generation of living cells (i.e. the status of all cells in the next game round) is calculated by a simple ruleset:</p>
+                        <li><i class="fas fa-angle-right"></i> Any living cell that has less than 2 living neighboring cells dies</li>
+                        <li><i class="fas fa-angle-right"></i> Any living cell that has 2 or 3 living neighboring cells continues to live</li>
+                        <li><i class="fas fa-angle-right"></i> Any living cell that has more than 3 living neighboring cells dies</li>
+                        <li><i class="fas fa-angle-right"></i> Any dead cell that has exactly 3 living neighbor cells becomes alive</li>
                     </ul>
                 </div>
             </div>
@@ -302,40 +302,24 @@
                 <div class="col-lg-12">
                     <h1 class="rules" id="featureJumper">Features</h1>
                     <ul class="features">
-                        <p style="padding-bottom: 1%; padding-top: 1%">  Im Folgenden werden die zentralen Features dieser Web-App erklärt</p>
-                        <li><i class="fas fa-qrcode"></i>  Simulation des <a href="https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens">Game of Life</a> von John Horton Conway aus dem Jahr 1970 </li>
-                        <li><i class="fas fa-filter"></i>  Spielregeln verändern (Weiterleben und Wiederbelebung)</li>
-                        <li><i class="fas fa-pencil-alt"></i> Manuell auf dem Spielfeld zeichnen - sowohl bei der Startbelegung als auch während der Simulation</li>
-                        <li><i class="fas fa-calculator"></i> Anzahl lebender Zellen bei der Startbelegung prozentual angeben</li>
-                        <li><i class="fas fa-fighter-jet"></i>  Anpassen der Simulationsgeschwindigkeit </li>
-                        <li><i class="fas fa-arrows-alt-h"></i>  Verändern der Fläche die bei der Startbelegung lebende Zellen enthalten soll </li>
-                        <p style="padding-bottom: 1%; padding-top: 2%">Sie benötigen weitere Hilfe? Dann klicken Sie hier - <a href="#" data-toggle="modal" data-target="#helpModal"> Hilfe</a></p>
+                        <p style="padding-bottom: 1%; padding-top: 1%"> In the following all features of this web app are explained</p>
+                        <li><i class="fas fa-qrcode"></i>  Simulation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> by John Horton Conway from 1970 </li>
+                        <li><i class="fas fa-filter"></i>  change the rules of the game (continue living and resuscitate)</li>
+                        <li><i class="fas fa-pencil-alt"></i> draw manually on the board (mouse drag/click) - both at start occupancy and during simulation</li>
+                        <li><i class="fas fa-calculator"></i> Specify number of living cells as a percentage during start occupancy</li>
+                        <li><i class="fas fa-fighter-jet"></i>  Adjusting the simulation speed </li>
+                        <li><i class="fas fa-arrows-alt-h"></i>  Change the area that should contain living cells at start occupancy </li>
+                        <p style="padding-bottom: 1%; padding-top: 2%">Need more information? Click here... - <a href="#" data-toggle="modal" data-target="#helpModal"> Hilfe</a></p>
                     </ul>
                 </div>
             </div>
             
-             <!-- Last Rows (Footer) -->
-            <div class="section" id="footer">
-                <div class="row" id="footerHead">
-                    <div class="col-lg-12 text-center">
-                        <img src=".\images\ittalentsLogo.png" alt="IT-Talents" ahref="https://www.it-talents.de/" style="height: 50px; width: auto;">
-                    </div>
-                </div>
-                <div class="row" id="footerMedia">
-                    <div class="col-lg-12 text-center" style="padding-top: 2%;">
-                        <a href='https://plus.google.com/102939274363947926860'><i class="fab fa-google-plus-square fa-2x"></i></a>
-                        <a href='https://www.facebook.com/ittalents.de'><i class="fab fa-facebook-square fa-2x"></i></a>
-                        <a href='https://www.it-talents.de/blog/rss'><i class="fas fa-rss-square fa-2x"></i></a>
-                        <a href='https://twitter.com/IT_Talents_de'><i class="fab fa-twitter-square fa-2x"></i></a>
-                    </div>
-                </div>
-            </div>
             <!-- Modal -->
             <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document" style="font-size: 14px;">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="helpModalLabel">Hilfe und Erklärungen</h5>
+                            <h5 class="modal-title" id="helpModalLabel">Instructions</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -343,42 +327,42 @@
                         <div class="modal-body">
                             <div class="row" id="helpRows">
                                 <div class="col-lg-6 text-center"><img src=".\images\pace.png" style="height: 50%; width: auto;"></div>
-                                <div class="col-lg-6">Mit dieser Einstellungen können Sie die Animationsgeschwindigkeit im Wertebereich von 0.5 (halbe Geschwindigkeit) bis zu 5 (5-fache Geschwindigkeit) steuern. 
-                                    Diese Einstellung kann auch während der Simulation verändert werden.
+                                <div class="col-lg-6">With this settings you can control the animation speed in the value range from 0.5 (half speed) up to 5 (5 times speed). 
+                                    This setting can also be changed during the simulation.
                                 </div>
                             </div>
                             <hr>
                             <div class="row" id="helpRows">
                                 <div class="col-lg-6 text-center"><img src=".\images\prob.png" style="height: 50%; width: auto;"></div>
-                                <div class="col-lg-6">Mit der Einstellung für die Wahrscheinlichkeit kann angegeben werden wie viele tote Zellen bei der Initialisierung vorkommen. Hierbei stehen 100% für nur tote Zellen und 0% für ausschließlich lebende Zellen. Diese Einstellung kann nach dem Simulationsstart nicht mehr verändert werden.</div>
+                                <div class="col-lg-6">The setting for the probability can be used to specify how many dead cells occur during initialization. Here, 100% stands for only dead cells and 0% for exclusively living cells. This setting can no longer be changed after the simulation start.</div>
                             </div>
                             <hr>
                             <div class="row" id="helpRows">
                                 <div class="col-lg-6 text-center"><img src=".\images\radius.png"  style="height: 50%; width: auto;"></div>
-                                <div class="col-lg-6">Mit der Radius-Einstellung kann ein Wert zwischen 5% und 100% angegeben werden, in welchem bei der Initialbelegung überhaupt lebende Zellen vorkommen können.
-                                    Diese Einstellung kann nach dem Simulationsstart nicht mehr verändert werden.
+                                <div class="col-lg-6">The radius setting can be used to specify a value between 5% and 100% in which living cells can occur at all during initial occupancy.
+                                    This setting can no longer be changed after the simulation start.
                                 </div>
                             </div>
                             <hr>
                             <div class="row" id="helpRows">
                                 <div class="col-lg-6 text-center"><img src=".\images\size.png"  style="height: 50%; width: auto;"></div>
-                                <div class="col-lg-6">Die beiden Werte X und Y ermöglichen die Anpassung des Spielfeldes. Diese Einstellung kann nach dem Simulationsstart nicht mehr verändert werden.</div>
+                                <div class="col-lg-6">The two values X and Y allow the adjustment of the playing field. This setting can no longer be changed after the simulation start.</div>
                             </div>
                             <hr>
                             <div class="row" id="helpRows">
                                 <div class="col-lg-6 text-center"><img src=".\images\stay.png"  style="height: 50%; width: auto;"></div>
-                                <div class="col-lg-6">Das Auswahlfenster mit den grünen Feldern, spiegeln die Regeln für das Weiterleben einer Zelle im nächsten Zyklus wieder. Voreingestellt sind die Standardregeln mit 2 und 3.
-                                    Diese Einstellung kann auch während der Simulation verändert werden.
+                                <div class="col-lg-6">The selection window with the green fields, reflect the rules for the survival of a cell in the next cycle. The default rules are 2 and 3.
+                                    This setting can also be changed during the simulation.
                                 </div>
                             </div>
                             <hr>
                             <div class="row" id="helpRows">
                                 <div class="col-lg-6 text-center"><img src=".\images\relive.png"  style="height: 50%; width: auto;"></div>
-                                <div class="col-lg-6">Das in blau gehaltene Auswahlfenster, spiegelt die Regeln für das Wiederbeleben einer Zelle im nächsten Zyklus wieder. Voreingestellt ist hier die Standardregel 3. Diese Einstellung kann auch während der Simulation verändert werden.</div>
+                                <div class="col-lg-6">The blue selection window reflects the rules for reviving a cell in the next cycle. The default setting here is rule 3, which can also be changed during the simulation.</div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Alles klar!</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Alright!</button>
                         </div>
                     </div>
                 </div>
